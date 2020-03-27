@@ -1,0 +1,66 @@
+{
+  "name": "samtools_filter_exact",
+  "title": "Samtools filter exact matches",
+  "summary": "Remove any perfectly aligned reads from a BAM file",
+  "dxapi": "1.0.0",
+  "version": "0.0.1",
+  "inputSpec": [
+    {
+      "name": "bam_file",
+      "label": "Input BAM file to filter",
+      "class": "file",
+      "optional": false,
+      "patterns": [
+        "*.bam"
+      ],
+      "help": ""
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "inexact_bam",
+      "label": "BAM file that has been filtered to only include inexact matchest",
+      "class": "file",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
+    {
+      "name": "exact_bam",
+      "label": "BAM file that has been filtered to only include exact matchest",
+      "class": "file",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    }
+  ],
+  "runSpec": {
+    "timeoutPolicy": {
+      "*": {
+        "hours": 48
+      }
+    },
+    "interpreter": "bash",
+    "release": "16.04",
+    "distribution": "Ubuntu",
+    "file": "src/samtools_filter_exact.sh",
+    "execDepends": [
+      {"name": "samtools",
+       "package_manager": "apt"}
+    ]
+  },
+  "access": {
+    "project": "CONTRIBUTE"
+  },
+  "regionalOptions": {
+    "azure:westus": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "azure:mem2_ssd1_x2"
+        }
+      }
+    }
+  }
+}
